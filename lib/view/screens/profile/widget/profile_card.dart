@@ -1,3 +1,4 @@
+import 'package:efood_multivendor_driver/theme/styles.dart';
 import 'package:efood_multivendor_driver/util/dimensions.dart';
 import 'package:efood_multivendor_driver/util/styles.dart';
 import 'package:flutter/material.dart';
@@ -10,21 +11,34 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: Container(
+    return Expanded(
+        child: Container(
       height: 100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
-        color: Theme.of(context).cardColor,
-        boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 800 : 200], blurRadius: 5, spreadRadius: 1)],
+        color: kPrimaryColor,
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: Colors.grey[Get.isDarkMode ? 800 : 200],
+        //     blurRadius: 5,
+        //     spreadRadius: 1,
+        //   ),
+        // ],
       ),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text(data, style: robotoMedium.copyWith(
-          fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: Theme.of(context).primaryColor,
-        )),
+        Text(data,
+            style: robotoMedium.copyWith(
+              fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+              color: Colors.white,
+            )),
         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-        Text(title, style: robotoRegular.copyWith(
-          fontSize: Dimensions.FONT_SIZE_SMALL, color: Theme.of(context).disabledColor,
-        )),
+        Text(
+          title,
+          style: robotoRegular.copyWith(
+            fontSize: Dimensions.FONT_SIZE_SMALL,
+            color: kTextColor,
+          ),
+        ),
       ]),
     ));
   }

@@ -1,3 +1,4 @@
+import 'package:efood_multivendor_driver/theme/styles.dart';
 import 'package:efood_multivendor_driver/util/dimensions.dart';
 import 'package:efood_multivendor_driver/util/images.dart';
 import 'package:efood_multivendor_driver/util/styles.dart';
@@ -8,59 +9,76 @@ class ProfileBgWidget extends StatelessWidget {
   final Widget circularImage;
   final Widget mainWidget;
   final bool backButton;
-  ProfileBgWidget({@required this.mainWidget, @required this.circularImage, @required this.backButton});
+  ProfileBgWidget(
+      {@required this.mainWidget,
+      @required this.circularImage,
+      @required this.backButton});
 
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-
-      Stack(clipBehavior: Clip.none, children: [
-
-        SizedBox(
-          width: context.width, height: 260,
-          child: Center(child: Image.asset(Images.profile_bg, height: 260, width: 1170, fit: BoxFit.fill)),
-        ),
-
-        Positioned(
-          top: 200, left: 0, right: 0, bottom: 0,
-          child: Center(
-            child: Container(
-              width: 1170,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                color: Theme.of(context).cardColor,
+      Stack(
+        clipBehavior: Clip.none,
+        children: [
+          SizedBox(
+            width: context.width,
+            height: 260,
+            child: SizedBox(
+              child: Image.asset(
+                Images.profile_bg,
+                fit: BoxFit.fill,
               ),
             ),
           ),
-        ),
-
-        Positioned(
-          top: MediaQuery.of(context).padding.top+10, left: 0, right: 0,
-          child: Text(
-            'profile'.tr, textAlign: TextAlign.center,
-            style: robotoRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, color: Theme.of(context).cardColor),
+          Positioned(
+            top: 200,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Center(
+              child: Container(
+                width: 1170,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                  color: kBackgroundColor,
+                ),
+              ),
+            ),
           ),
-        ),
-
-        backButton ? Positioned(
-          top: MediaQuery.of(context).padding.top, left: 10,
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Theme.of(context).cardColor, size: 20),
-            onPressed: () => Get.back(),
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 10,
+            left: 0,
+            right: 0,
+            child: Text(
+              'profile'.tr,
+              textAlign: TextAlign.center,
+              style: robotoRegular.copyWith(
+                  fontSize: Dimensions.FONT_SIZE_LARGE,
+                  color: Theme.of(context).primaryColor),
+            ),
           ),
-        ) : SizedBox(),
-
-        Positioned(
-          top: 150, left: 0, right: 0,
-          child: circularImage,
-        ),
-
-      ]),
-
+          backButton
+              ? Positioned(
+                  top: MediaQuery.of(context).padding.top,
+                  left: 10,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back_ios,
+                        color: Theme.of(context).cardColor, size: 20),
+                    onPressed: () => Get.back(),
+                  ),
+                )
+              : SizedBox(),
+          Positioned(
+            top: 150,
+            left: 0,
+            right: 0,
+            child: circularImage,
+          ),
+        ],
+      ),
       Expanded(
         child: mainWidget,
       ),
-
     ]);
   }
 }
