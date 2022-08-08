@@ -33,7 +33,8 @@ class HistoryOrderWidget extends StatelessWidget {
         padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
         margin: EdgeInsets.only(bottom: Dimensions.PADDING_SIZE_SMALL),
         decoration: BoxDecoration(
-          color: Color(0xff707070),
+          color: Theme.of(context).primaryColor,
+          //  color: Color(0xff707070),
           // boxShadow: [
           //   BoxShadow(
           //       color: Colors.grey[Get.isDarkMode ? 700 : 300],
