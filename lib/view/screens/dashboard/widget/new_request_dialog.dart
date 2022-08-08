@@ -46,36 +46,52 @@ class _NewRequestDialogState extends State<NewRequestDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL)),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL)),
       //insetPadding: EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
-      child: Padding(
-        padding: EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-
-          Image.asset(Images.notification_in, height: 60, color: Theme.of(context).primaryColor),
-
-          Padding(
-            padding: EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
-            child: Text(
-              widget.isRequest ? 'new_order_request_from_a_customer'.tr : 'you_have_assigned_a_new_order'.tr, textAlign: TextAlign.center,
-              style: robotoRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
-            ),
+      child: Container(
+        //color: Color(0xff20242a),
+        child: Padding(
+          padding: EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
+          child: Container(
+            //color: Color(0xff20242a),
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Image.asset(Images.notification_in,
+                  height: 60, color: Theme.of(context).primaryColor),
+              Padding(
+                padding: EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
+                child: Text(
+                  widget.isRequest
+                      ? 'new_order_request_from_a_customer'.tr
+                      : 'you_have_assigned_a_new_order'.tr,
+                  textAlign: TextAlign.center,
+                  style: robotoRegular.copyWith(
+                      fontSize: Dimensions.FONT_SIZE_LARGE,
+                      color: Theme.of(context).primaryColor),
+                ),
+              ),
+              CustomButton(
+                height: 40,
+                buttonText: widget.isRequest
+                    ? (Get.find<OrderController>().currentOrderList != null &&
+                            Get.find<OrderController>()
+                                    .currentOrderList
+                                    .length >
+                                0)
+                        ? 'ok'.tr
+                        : 'go'.tr
+                    : 'ok'.tr,
+                onPressed: () {
+                  if (!widget.isRequest) {
+                    _timer?.cancel();
+                  }
+                  Get.back();
+                  widget.onTap();
+                },
+              ),
+            ]),
           ),
-
-          CustomButton(
-            height: 40,
-            buttonText: widget.isRequest ? (Get.find<OrderController>().currentOrderList != null
-                && Get.find<OrderController>().currentOrderList.length > 0) ? 'ok'.tr : 'go'.tr : 'ok'.tr,
-            onPressed: () {
-              if(!widget.isRequest) {
-                _timer?.cancel();
-              }
-              Get.back();
-              widget.onTap();
-            },
-          ),
-
-        ]),
+        ),
       ),
     );
   }

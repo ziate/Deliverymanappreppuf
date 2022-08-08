@@ -271,22 +271,19 @@ class OrderDetailsScreen extends StatelessWidget {
                                           padding: EdgeInsets.zero,
                                           shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(
-                                                Dimensions.RADIUS_SMALL),
+                                              Dimensions.RADIUS_SMALL,
+                                            ),
                                             side: BorderSide(
                                                 width: 1,
                                                 color: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText1
-                                                    .color),
+                                                    .primaryColor),
                                           ),
                                         ),
                                         child: Text('cancel'.tr,
                                             textAlign: TextAlign.center,
                                             style: robotoRegular.copyWith(
                                               color: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1
-                                                  .color,
+                                                  .primaryColor,
                                               fontSize:
                                                   Dimensions.FONT_SIZE_LARGE,
                                             )),

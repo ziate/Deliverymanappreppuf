@@ -22,19 +22,19 @@ class MyTextField extends StatefulWidget {
 
   MyTextField(
       {this.hintText = '',
-        this.controller,
-        this.focusNode,
-        this.nextFocus,
-        this.isEnabled = true,
-        this.inputType = TextInputType.text,
-        this.inputAction = TextInputAction.next,
-        this.maxLines = 1,
-        this.onSubmit,
-        this.onChanged,
-        this.capitalization = TextCapitalization.none,
-        this.onTap,
-        this.fillColor,
-        this.isPassword = false});
+      this.controller,
+      this.focusNode,
+      this.nextFocus,
+      this.isEnabled = true,
+      this.inputType = TextInputType.text,
+      this.inputAction = TextInputAction.next,
+      this.maxLines = 1,
+      this.onSubmit,
+      this.onChanged,
+      this.capitalization = TextCapitalization.none,
+      this.onTap,
+      this.fillColor,
+      this.isPassword = false});
 
   @override
   _MyTextFieldState createState() => _MyTextFieldState();
@@ -47,13 +47,14 @@ class _MyTextFieldState extends State<MyTextField> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 800 : 200], spreadRadius: 2, blurRadius: 5, offset: Offset(0, 5))],
-      ),
+          // boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 800 : 200], spreadRadius: 2, blurRadius: 5, offset: Offset(0, 5))],
+          ),
       child: TextField(
         maxLines: widget.maxLines,
         controller: widget.controller,
         focusNode: widget.focusNode,
-        style: robotoRegular,
+        //  style: robotoRegular,
+        style: TextStyle(color: Theme.of(context).primaryColor),
         textInputAction: widget.inputAction,
         keyboardType: widget.inputType,
         cursorColor: Theme.of(context).primaryColor,
@@ -62,22 +63,37 @@ class _MyTextFieldState extends State<MyTextField> {
         autofocus: false,
         //onChanged: widget.isSearch ? widget.languageProvider.searchLanguage : null,
         obscureText: widget.isPassword ? _obscureText : false,
-        inputFormatters: widget.inputType == TextInputType.phone ? <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp('[0-9+]'))] : null,
+        inputFormatters: widget.inputType == TextInputType.phone
+            ? <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp('[0-9+]'))
+              ]
+            : null,
         decoration: InputDecoration(
           hintText: widget.hintText,
           isDense: true,
           filled: true,
-          fillColor: widget.fillColor != null ? widget.fillColor : Theme.of(context).cardColor,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL), borderSide: BorderSide.none),
+          fillColor: widget.fillColor != null
+              ? widget.fillColor
+              : Theme.of(context).cardColor,
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
+              borderSide: BorderSide.none),
           hintStyle: robotoRegular.copyWith(color: Theme.of(context).hintColor),
-          suffixIcon: widget.isPassword ? IconButton(
-            icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility, color: Theme.of(context).hintColor.withOpacity(0.3)),
-            onPressed: _toggle,
-          ) : null,
+          suffixIcon: widget.isPassword
+              ? IconButton(
+                  icon: Icon(
+                      _obscureText ? Icons.visibility_off : Icons.visibility,
+                      color: Theme.of(context).hintColor.withOpacity(0.3)),
+                  onPressed: _toggle,
+                )
+              : null,
         ),
         onTap: widget.onTap,
-        onSubmitted: (text) => widget.nextFocus != null ? FocusScope.of(context).requestFocus(widget.nextFocus)
-            : widget.onSubmit != null ? widget.onSubmit(text) : null,
+        onSubmitted: (text) => widget.nextFocus != null
+            ? FocusScope.of(context).requestFocus(widget.nextFocus)
+            : widget.onSubmit != null
+                ? widget.onSubmit(text)
+                : null,
         onChanged: widget.onChanged,
       ),
     );

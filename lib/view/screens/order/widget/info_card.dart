@@ -67,7 +67,8 @@ class InfoCard extends StatelessWidget {
                   children: [
                     Text(name,
                         style: robotoRegular.copyWith(
-                            fontSize: Dimensions.FONT_SIZE_LARGE)),
+                            fontSize: Dimensions.FONT_SIZE_LARGE,
+                            color: Theme.of(context).cardColor)),
                     SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                     Text(
                       address,
@@ -87,13 +88,12 @@ class InfoCard extends StatelessWidget {
                                 }
                               },
                               icon: Icon(Icons.call,
-                                  color: Theme.of(context).primaryColor,
-                                  size: 20),
+                                  color: Theme.of(context).cardColor, size: 20),
                               label: Text(
                                 'call'.tr,
                                 style: robotoRegular.copyWith(
                                     fontSize: Dimensions.FONT_SIZE_SMALL,
-                                    color: Theme.of(context).primaryColor),
+                                    color: Theme.of(context).cardColor),
                               ),
                             ),
                             TextButton.icon(
@@ -107,13 +107,12 @@ class InfoCard extends StatelessWidget {
                                 }
                               },
                               icon: Icon(Icons.directions,
-                                  color: Theme.of(context).disabledColor,
-                                  size: 20),
+                                  color: Theme.of(context).cardColor, size: 20),
                               label: Text(
                                 'direction'.tr,
                                 style: robotoRegular.copyWith(
                                     fontSize: Dimensions.FONT_SIZE_SMALL,
-                                    color: Theme.of(context).disabledColor),
+                                    color: Theme.of(context).cardColor),
                               ),
                             ),
                           ])
